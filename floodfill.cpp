@@ -106,12 +106,13 @@ struct Image
 		// this code is connected 4 floodfill, 
 		Image temp(width,height);
 		int value = data[x*width+y];
+		data[x*width+y] = color;
 		pair<int,int> seedPt;			// starting seed point
 		seedPt.first = x;
 		seedPt.second = y;
 		vector<pair<int,int>> connectedPts;   // push point into memory to remember what points to check connected 4 points
 		connectedPts.push_back(seedPt); // push to the front
-
+		
 		while(1)
 		{
 			x = connectedPts[0].first; // always go to the first element in the vector
