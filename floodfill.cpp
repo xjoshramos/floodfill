@@ -1,7 +1,10 @@
+#include "stdafx.h"
 #include <iostream>
-#include <cstring>
-//#include "stdafx.h"
-
+#include <string>
+#include <list>
+#include <map>
+#include <vector>
+using namespace std;
 
 struct Image
 {
@@ -104,12 +107,13 @@ struct Image
 };
 
 
-int main()
+int main(int argc, char *argv[])
 {
 	
 	std::cout << "Input: " <<std::endl;
 	Image in(1,1);
-	/*in.Example1();
+	cout << "helllllloooooo" << endl;
+	in.Example1();
 	in.Display();
 	std::cout << "solution: "<<std::endl;
 	Image out(1,1);
@@ -118,11 +122,9 @@ int main()
 
 	Image sanity(1,1);
 	sanity.Solution1();
-	*/
+	
 	in.floodfill(2,3,5);
 
 	system("PAUSE");
 	return 0;
 }
-
-
