@@ -462,10 +462,8 @@ double Box::getWeightByBoxId(string BoxId){
 }
 
 double Box::getWeightAtPercentile(double percentile){ 
-    // I did not understand what was being asked here so I assumed it is this....
-    // I googled and was not able to find the meaning of what is being asked
-    // get the weight of percentile means that at percent 100 return the total weight of all the boxes, 10 percent 
-    // or ten percent of total weight
+     
+   
     double weightPercentile = 0;
     double totalWeight = 0;
     
