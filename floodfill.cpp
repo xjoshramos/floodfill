@@ -101,8 +101,61 @@ struct Image
 		return true;
 	}
 
-	void floodfill( int x, int y, int color)
+	void floodfill( int x, int y, int color) // floodfill funciton start on the point seed 
 	{
+		// this code is connected 4 floodfill, 
+		Image temp(width,height);
+		int value = data[x*width+y];
+		pair<int,int> seedPt;			// starting seed point
+		seedPt.first = x;
+		seedPt.second = y;
+		vector<pair<int,int>> connectedPts;   // push point into memory to remember what points to check connected 4 points
+		connectedPts.push_back(seedPt); // push to the front
+
+		while(1)
+		{
+			x = connectedPts[0].first; // always go to the first element in the vector
+			y = connectedPts[0].second;
+			int up = (x-1)*width +y;    // checking points up, down, left, right if the points are conneceted to the seed
+			int down = (x+1)*width +y;
+			int left = x*width +(y-1);
+			int right = x*width +(y+1);
+			
+			connectedPts.erase(connectedPts.begin()); // erase the first element in the vector
+			
+			if(data[up] == value){
+				data[up] = color;
+				seedPt.first  = x-1;
+				seedPt.second = y;
+				connectedPts.push_back(seedPt); // if point is connected to seed push the point in the memory at the end of the vector
+			}
+			if(data[down] == value){
+				data[down] = color;
+				seedPt.first  = x+1;
+				seedPt.second = y;
+				connectedPts.push_back(seedPt);
+			}
+			if(data[left] == value){
+				data[left] = color;
+				seedPt.first  = x;
+				seedPt.second = y-1;
+				connectedPts.push_back(seedPt);
+			}
+			if(data[right] == value){
+				data[right] = color;
+				seedPt.first  = x;
+				seedPt.second = y+1;
+				connectedPts.push_back(seedPt);
+			}
+
+			if( connectedPts.size() == 0)
+			{
+				// break when all the points that are connected are visited.
+				break;
+			}
+
+		}
+
 	}
 };
 
@@ -125,6 +178,13 @@ int main(int argc, char *argv[])
 	
 	in.floodfill(2,3,5);
 
+	// this code will check if the algorithm is a pass or fail
+
+	std::cout << ((sanity == out) ? "PASS" : "FAIL") << std::endl;
+	std::cout << ((in == out) ? "PASS" : "FAIL") <<std::endl;
+
 	system("PAUSE");
 	return 0;
 }
+
+
