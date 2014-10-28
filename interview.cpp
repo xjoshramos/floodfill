@@ -478,10 +478,106 @@ double Box::getWeightAtPercentile(double percentile){
 }
 
 
-int main()
+
+
+
+
+struct Image
 {
 
+	int width, height;
+	int *data;
+	Image(int w, int h)
+	{
+		width = w;
+		height = h;
+		data = NULL;
+		Init();
+
+	}
+	~Image()
+	{
+		delete[] data;
+	}
+	void Display() const
+	{
+		for(int i=0; i<height; i++)
+		{
+			for(int j=0; j<width; j++)
+			{
+				std::cout << data[i*width +j] << " ";
+			}
+			std::cout << std::endl;
+		}
+	}
+	void Example()
+	{
+		width  = 8;
+		height = 6;
+		Init();
+		Image &self = *this;
+		for(int i=1; i<height; i++)
+			self(o,i) = 1;
+		for(int i=1; i<height; ++i)
+			self(i,0) = 1;
+		self(2,2) = 1;
+		self(3,3) = 3;
+		self(4,4) = 1;
+		self(3,5) = 1;
+		self(2,5) = 2;
+		self(1,5) = 3;
+		self(5,5) = 2
+	}
 	
+	void Init()
+	{
+		if(data) delete[] data;
+		data = new int[width*height];
+		memset(data, 0, width*height*sizeof(int));
+	}
+	inline int& operator()(int i, int j)
+	{
+		return data[i*width +j];
+	}
+	boot operator==(Image const& rhs) const
+	{
+		Image const& self = *this;
+		for(int i =0; i<height; i++)
+		{
+			for(int j =0; j<width; j++)
+			{
+				if(self(i,j) != rhs(i,j))
+				{
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	void floodfill( int x, int y, int color)
+	{
+	}
+};
+
+
+int main()
+{
+	std::cout << "Input: " <<std::endl;
+	Image in(1,1);
+	in.Example1();
+	in.Display();
+	std::cout << "solution: "<<std::endl;
+	Image out(1,1);
+	out.Solution1();
+	out.display();
+
+	Image sanity(1,1);
+	sanity.Solution1();
+
+	in.floodfill(2.3.5);
+
+	/*	
 	Box boxInfo;
     boxInfo.write("box1", 100);
     boxInfo.write("box2", 200);
@@ -490,7 +586,7 @@ int main()
     //double box1Weight = boxInfo.getWeightByBoxId("box1");
     //double percentileWeight = boxInfo.getWeightAtPercentile(100);
 
-	
+	*/
 	system("PAUSE");
 	return 0;
 }
