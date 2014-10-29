@@ -1,3 +1,4 @@
+
 #include "stdafx.h"
 #include <iostream>
 #include <string>
@@ -112,7 +113,7 @@ struct Image
 		seedPt.second = y;
 		vector<pair<int,int>> connectedPts;   // push point into memory to remember what points to check connected 4 points
 		connectedPts.push_back(seedPt); // push to the front
-		
+
 		while(1)
 		{
 			x = connectedPts[0].first; // always go to the first element in the vector
@@ -155,6 +156,10 @@ struct Image
 				break;
 			}
 
+		}
+		//printing the answer below... keep in mind that value to flood fill must not equal the value of the point seed. easily fixed (TBD)
+		for(int i = 0 ; i < width*height; i++){
+			cout << "int i :: " << i << "=" <<data[i] << endl;
 		}
 
 	}
